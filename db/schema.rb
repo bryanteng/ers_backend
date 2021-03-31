@@ -15,7 +15,10 @@ ActiveRecord::Schema.define(version: 2021_03_15_150537) do
   create_table "gamerooms", force: :cascade do |t|
     t.json "discard", default: []
     t.json "users", default: []
-    t.string "deck"
+    t.string "deckID"
+    t.boolean "isGameStarted", default: false
+    t.json "players"
+    t.json "messages", default: []
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

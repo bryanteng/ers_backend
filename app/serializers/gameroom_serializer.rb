@@ -1,3 +1,3 @@
 class GameroomSerializer < ActiveModel::Serializer
-  attributes :id, :discard, :users, :deck
+  attributes :id, :deckID, :discard, :users, :isGameStarted, :players, :messages
 end
