@@ -4,6 +4,7 @@ class CreateGamerooms < ActiveRecord::Migration[5.2]
       t.json :discard, default: [], array: true
       t.json :users, default: [], array: true
       t.string :deckID
+      t.integer :currentPlayer, default: 0
       t.boolean :isGameStarted, :default => false
       t.json :players
       t.json :messages, default: [], array: true

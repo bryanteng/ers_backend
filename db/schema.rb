@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_150537) do
     t.json "discard", default: []
     t.json "users", default: []
     t.string "deckID"
+    t.integer "currentPlayer", default: 0
     t.boolean "isGameStarted", default: false
     t.json "players"
     t.json "messages", default: []

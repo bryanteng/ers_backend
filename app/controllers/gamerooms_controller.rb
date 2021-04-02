@@ -27,13 +27,20 @@ class GameroomsController < ApplicationController
   end
 
   def create
-    @gameroom = Gameroom.new(gameroom_params)
-
-    if @gameroom.save
+    if Gameroom.find_by(deckID: params[:deckID]) === nil
+      @gameroom = Gameroom.create(gameroom_params)
       render json: @gameroom, status: :accepted
     else
-      render json: {errors: @gameroom.errors.full_messages}, status: :unprocessable_entity
+      @gameroom = Gameroom.find_by(deckID: params[:deckID])
     end
+
+    ActionCable.server.broadcast 'gamerooms_channel', @gameroom
+    # @gameroom = Gameroom.new(gameroom_params)
+    # if @gameroom.save
+    #   render json: @gameroom, status: :accepted
+    # else
+    #   render json: {errors: @gameroom.errors.full_messages}, status: :unprocessable_entity
+    # end
 
   end
 
