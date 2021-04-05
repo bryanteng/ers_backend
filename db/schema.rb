@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2021_03_15_150537) do
 
   create_table "gamerooms", force: :cascade do |t|
-    t.json "discard", default: []
+    t.json "discardPile", default: []
     t.json "users", default: []
     t.string "deckID"
     t.integer "currentPlayer", default: 0

@@ -12,7 +12,13 @@ class GameroomsController < ApplicationController
 
   def getRoom
     @gameroom = Gameroom.find_by(deckID: params[:deckID])
-    render json: @gameroom
+    if @gameroom === nil
+      render json: @gameroom
+    else
+      ActionCable.server.broadcast 'gamerooms_channel', @gameroom
+      render json: @gameroom
+    end
+
   end
 
   def updateRoom
