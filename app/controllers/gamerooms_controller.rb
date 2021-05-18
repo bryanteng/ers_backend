@@ -12,13 +12,7 @@ class GameroomsController < ApplicationController
 
   def getRoom
     @gameroom = Gameroom.find_by(deckID: params[:deckID])
-    if @gameroom === nil
-      render json: @gameroom
-    else
-      ActionCable.server.broadcast 'gamerooms_channel', @gameroom
-      render json: @gameroom
-    end
-
+    render json: @gameroom
   end
 
   def updateRoom
@@ -26,6 +20,8 @@ class GameroomsController < ApplicationController
 
     if @gameroom.update(gameroom_params)
       render json: @gameroom, status: :accepted
+      # ActionCable.server.broadcast 'gamerooms_channel', @gameroom
+      GameroomsChannel.broadcast_to(@gameroom,@gameroom)
     else
       render json: {errors: @gameroom.errors.full_messages}, status: :unprocessable_entity
     end
@@ -35,18 +31,12 @@ class GameroomsController < ApplicationController
   def create
     if Gameroom.find_by(deckID: params[:deckID]) === nil
       @gameroom = Gameroom.create(gameroom_params)
-      render json: @gameroom, status: :accepted
     else
       @gameroom = Gameroom.find_by(deckID: params[:deckID])
     end
 
     ActionCable.server.broadcast 'gamerooms_channel', @gameroom
-    # @gameroom = Gameroom.new(gameroom_params)
-    # if @gameroom.save
-    #   render json: @gameroom, status: :accepted
-    # else
-    #   render json: {errors: @gameroom.errors.full_messages}, status: :unprocessable_entity
-    # end
+    render json: @gameroom, status: :accepted
 
   end
 
