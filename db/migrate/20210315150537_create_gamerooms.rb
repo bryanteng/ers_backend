@@ -8,6 +8,10 @@ class CreateGamerooms < ActiveRecord::Migration[5.2]
       t.boolean :isGameStarted, :default => false
       t.json :players
       t.json :messages, default: [], array: true
+      t.boolean :aceOrFace, :default => false
+      t.string :slappable
+      t.string :roundWinner
+      t.string :gameWinner
       t.timestamps
     end
   end

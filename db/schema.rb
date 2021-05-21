@@ -20,6 +20,10 @@ ActiveRecord::Schema.define(version: 2021_03_15_150537) do
     t.boolean "isGameStarted", default: false
     t.json "players"
     t.json "messages", default: []
+    t.boolean "aceOrFace", default: false
+    t.string "slappable"
+    t.string "roundWinner"
+    t.string "gameWinner"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
