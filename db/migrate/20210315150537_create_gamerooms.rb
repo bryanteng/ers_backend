@@ -12,6 +12,7 @@ class CreateGamerooms < ActiveRecord::Migration[5.2]
       t.string :slappable
       t.string :roundWinner
       t.string :gameWinner
+      t.json :penaltyPile, default: [], array: true
       t.timestamps
     end
   end

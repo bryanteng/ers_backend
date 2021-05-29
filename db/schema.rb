@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_150537) do
     t.string "slappable"
     t.string "roundWinner"
     t.string "gameWinner"
+    t.json "penaltyPile", default: []
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

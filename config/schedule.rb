@@ -23,6 +23,7 @@ every 5.days do
   runner "Gameroom.delete_5_days_old"
 end
 
-every 1.day do
+every :day, at: '12:00am' do
   runner "Gameroom.delete_1_day_old"
+  rake "gamerooms:delete_1_day_old"
 end
